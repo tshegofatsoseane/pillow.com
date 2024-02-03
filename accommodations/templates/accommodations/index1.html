@@ -1,0 +1,40 @@
+<!-- index.html -->
+
+<!-- Search Form -->
+<form method="GET" action="{% url 'index' %}" class="my-4">
+    <div class="flex items-center border-b border-b-2 border-teal-500 py-2">
+        <input type="text" name="q" placeholder="Search by Residence Name" 
+               class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+        <button type="submit" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">Search</button>
+        <button type="button" onclick="clearSearch()" class="ml-2 text-sm text-gray-500 hover:text-red-500">Clear</button>
+    </div>
+</form>
+
+<!-- Search Results -->
+<ul id="searchResults" class="divide-y divide-gray-200">
+    {% if accommodations %}
+        {% for accommodation in accommodations %}
+            <li class="py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="flex-shrink-0">
+                        <!-- Add icon or image here if needed -->
+                    </div>
+                    <div>
+                        <p class="text-lg font-semibold text-gray-900">{{ accommodation.residence_name }}</p>
+                        <p class="text-sm text-gray-500">{{ accommodation.street_address }}</p>
+                        <!-- Display other fields as needed -->
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    {% else %}
+        <li class="py-4">No accommodations found.</li>
+    {% endif %}
+</ul>
+
+<script>
+    function clearSearch() {
+        document.querySelector('input[name="q"]').value = ''; // Clear search input
+        document.getElementById('searchResults').style.display = 'none'; // Hide search results
+    }
+</script>

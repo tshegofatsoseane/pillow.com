@@ -1,0 +1,20 @@
+<!-- accommodations/search_results.html -->
+
+{% if accommodations %}
+    {% for accommodation in accommodations %}
+        <li class="py-4">
+            <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0">
+                    <!-- Add icon or image here if needed -->
+                </div>
+                <div>
+                    <p class="text-lg font-semibold text-gray-900">{{ accommodation.residence_name }}</p>
+                    <p class="text-sm text-gray-500">{{ accommodation.street_address }}</p>
+                    <!-- Display other fields as needed -->
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+{% else %}
+    <li class="py-4">No accommodations found.</li>
+{% endif %}

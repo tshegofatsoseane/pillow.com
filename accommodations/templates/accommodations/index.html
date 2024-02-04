@@ -84,7 +84,7 @@
                         <div class="mt-20 md:mt-0">
                             <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Welcome to pillow.com</h2>
                             <p class="text-lg md:text-xl lg:text-2xl mb-8">Discover comfortable and secure student
-                                accommodations near NWU Mafikeng Campus.</p>
+                                accommodations near all three NWU Campuses.</p>
                         </div>
 
                         <!-- Card for the form -->
@@ -206,7 +206,8 @@
               <div
                   class="w-full h-auto overflow-hidden rounded-md bg-white sm:rounded-xl flex flex-col md:flex-row md:space-x-4">
                   <img class="w-full md:w-1/4 h-64 md:h-auto object-cover rounded-md"
-                      src="https://images.unsplash.com/photo-1515263487990-61b07816b324" alt="Cozy Student House">
+                      src="https://maps.googleapis.com/maps/api/streetview?size=400x300&location={{ accommodation.street_address|urlencode }}&key=AIzaSyD9dGsjV6QwyIZEubLJsdgNe6dldKH-6dU"
+                      alt="Street View Image">
                   <div
                       class="p-6 flex flex-col flex-grow rounded-md md:w-2/3 border border-gray-200 space-y-4 md:space-y-0 md:space-x-4 md:px-6 md:py-4">
                       <h3 class="text-lg md:text-xl lg:text-2xl font-semibold mb-2">{{ accommodation.residence_name }}</h3>
@@ -215,34 +216,35 @@
                               class="text-gray-700 font-medium">{{ accommodation.accreditation_number }}</span>
                       </p>
                       <p class="text-gray-500 mb-2">
-                          Number of Beds: <span
-                              class="text-gray-700 font-medium">{{ accommodation.number_of_beds }}</span>
-                      </p>
-                      <p class="text-gray-500 mb-2">
-                          Email: <span class="text-gray-700 font-medium">{{ accommodation.email }}</span>
-                      </p>
-                      <p class="text-gray-500 mb-2">
-                          Cell Number: <span
-                              class="text-gray-700 font-medium">{{ accommodation.cell_number }}</span>
-                      </p>
-                      <p class="text-gray-500 mb-2">
-                          Street Address: <span
-                              class="text-gray-700 font-medium">{{ accommodation.street_address }}</span>
-                      </p>
-                      <p class="text-gray-500 mb-2">
-                          Nearest Campus: <span
-                              class="text-gray-700 font-medium">{{ accommodation.nearest_campus }}</span>
-                      </p>
-                      <!-- Display other fields as needed -->
+                        Number of Beds: <span
+                            class="text-gray-700 font-medium">{{ accommodation.number_of_beds }}</span>
+                    </p>
+                    <p class="text-gray-500 mb-2">
+                        Email: <span class="text-gray-700 font-medium">{{ accommodation.email }}</span>
+                    </p>
+                    <p class="text-gray-500 mb-2">
+                        Cell Number: <span
+                            class="text-gray-700 font-medium">{{ accommodation.cell_number }}</span>
+                    </p>
+                    <p class="text-gray-500 mb-2">
+                        Street Address: <span
+                            class="text-gray-700 font-medium">{{ accommodation.street_address }}</span>
+                    </p>
+                    <p class="text-gray-500 mb-2">
+                        Nearest Campus: <span
+                            class="text-gray-700 font-medium">{{ accommodation.nearest_campus }}</span>
+                    </p>
+                      <!-- Include other details -->
                       <div class="flex justify-between items-center mt-2">
                           <span class="text-indigo-600 font-semibold">Available</span>
                           <button class="text-white bg-indigo-600 px-3 py-1 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out transform text-sm md:text-base"
-                onclick="showAccommodationDetails('{{ accommodation.residence_name }}', '{{ accommodation.accreditation_number }}', '{{ accommodation.number_of_beds }}', '{{ accommodation.email }}', '{{ accommodation.cell_number }}', '{{ accommodation.street_address }}', '{{ accommodation.nearest_campus }}')">Details</button>
+                              onclick="showAccommodationDetails('{{ accommodation.residence_name }}', '{{ accommodation.accreditation_number }}', '{{ accommodation.number_of_beds }}', '{{ accommodation.email }}', '{{ accommodation.cell_number }}', '{{ accommodation.street_address }}', '{{ accommodation.nearest_campus }}')">Details</button>
                       </div>
                   </div>
               </div>
           </div>
-          {% endfor %} 
+          {% endfor %}
+          
     </div>
 
 <!-- Modal HTML -->
@@ -536,7 +538,7 @@
                 <img src="{% static 'images/logo.png' %}" alt="Pillow Logo" class="h-8 w-auto mr-2">
                 <div>
                     <h1 class="text-2xl font-bold inline-block">Pillow<span class="text-indigo-600">.com</span></h1>
-                    <p class="text-sm">Discover comfortable and secure student accommodations near NWU Mafikeng Campus.</p>
+                    <p class="text-sm">Discover comfortable and secure student accommodations near all three NWU Campuses.</p>
                 </div>
             </div>
             

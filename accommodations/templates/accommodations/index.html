@@ -6,12 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pillow.com - NWU Campus Accommodation Finder</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9dGsjV6QwyIZEubLJsdgNe6dldKH-6dU&callback=initMap" async defer></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-Fr6a+2f9aErTQQ4qT6Ad+TjW+i1FqqvlLMK5LcguGP5K/6ZacUGKpJLxaSuC+NWaZEbUe5XhmWxQpdlzRcKaAg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9dGsjV6QwyIZEubLJsdgNe6dldKH-6dU&callback=initMap" async defer></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9dGsjV6QwyIZEubLJsdgNe6dldKH-6dU&libraries=places"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    
 
 </head>
 <style>
@@ -249,56 +247,75 @@
 
 <!-- Modal HTML -->
 <div id="detailsModal" class="modal hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center">
-    <div class="modal-content bg-white p-8 rounded-lg shadow-lg max-w-screen-xl">
-        <!-- Accommodation details will be displayed here -->
-        <h2 class="text-2xl font-semibold mb-4 text-indigo-600" id="residenceName">Accommodation Details</h2>
-        <div id="accommodationDetails" class="mb-6">
-            <!-- Sample detail presentation -->
-            <div class="flex items-center mb-4">
-                <span class="text-gray-600 font-semibold mr-2">Accreditation Number:</span>
-                <span class="text-gray-800" id="accreditationNumber">ACCR123456</span>
-            </div>
-            <div class="flex items-center mb-4">
-                <span class="text-gray-600 font-semibold mr-2">Number of Beds:</span>
-                <span class="text-gray-800" id="numberOfBeds">10</span>
-            </div>
-            <!-- Add more detail presentations -->
-            <div class="flex items-center mb-4">
-                <span class="text-gray-600 font-semibold mr-2">Email:</span>
-                <span class="text-gray-800" id="email">example@example.com</span>
-            </div>
-            <div class="flex items-center mb-4">
-                <span class="text-gray-600 font-semibold mr-2">Cell Number:</span>
-                <span class="text-gray-800" id="cellNumber">123-456-7890</span>
-            </div>
-            <div class="flex items-center mb-4">
-                <span class="text-gray-600 font-semibold mr-2">Street Address:</span>
-                <span class="text-gray-800" id="streetAddress">123 Main St</span>
-            </div>
-            <div class="flex items-center mb-4">
-                <span class="text-gray-600 font-semibold mr-2">Nearest Campus:</span>
-                <span class="text-gray-800" id="nearestCampus">Campus Name</span>
-            </div>
-            <div class="flex items-center mb-4">
-                <span class="text-gray-600 font-semibold mr-2">Distance to Nearest Campus:</span>
-                <span class="text-gray-800" id="distanceToCampus">Calculating...</span>
-            </div>
-            <!-- Add more detail presentations as needed -->
+    <div class="modal-content bg-white rounded-lg shadow-lg max-w-screen-xl">
+        <!-- Modal Header -->
+        <div class="modal-header bg-indigo-600 text-white px-8 py-4 rounded-t-lg">
+            <h2 class="text-2xl font-semibold" id="residenceName">Accommodation Details</h2>
         </div>
+        
+        <!-- Modal Body -->
+        <div class="modal-body p-8">
+            <!-- Accommodation details will be displayed here -->
+<div id="accommodationDetails" class="mb-6 bg-purple-300 w-120 bg-opacity-50 rounded-lg p-6" style="margin-top: -20px;">
+    <!-- Sample detail presentation -->
+    <div class="flex items-center mb-4 hidden">
+        <span class="text-gray-600 font-semibold mr-2">Accreditation Number:</span>
+        <span class="text-gray-800" id="accreditationNumber">ACCR123456</span>
+    </div>
+    <div class="flex items-center mb-4 hidden">
+        <span class="text-gray-600 font-semibold mr-2">Number of Beds:</span>
+        <span class="text-gray-800" id="numberOfBeds">10</span>
+    </div>
+    <!-- Add more detail presentations -->
+    <div class="flex items-center mb-4">
+        <span class="text-gray-600 font-semibold mr-2">Email:</span>
+        <span class="text-gray-800" id="email">example@example.com</span>
+    </div>
+    <div class="flex items-center mb-4">
+        <span class="text-gray-600 font-semibold mr-2">Cell Number:</span>
+        <span class="text-gray-800" id="cellNumber">123-456-7890</span>
+    </div>
+    <div class="flex items-center mb-4">
+        <span class="text-gray-600 font-semibold mr-2">Street Address:</span>
+        <span class="text-gray-800" id="streetAddress">123 Main St</span>
+    </div>
+    <div class="flex items-center mb-4">
+        <span class="text-gray-600 font-semibold mr-2">Nearest Campus:</span>
+        <span class="text-gray-800" id="nearestCampus">Campus Name</span>
+    </div>
+    <div class="flex items-center mb-4">
+        <span class="text-gray-600 font-semibold mr-2">Distance to Nearest Campus:</span>
+        <span class="text-purple-800 font-semibold" id="distanceToCampus">Calculating...</span>
+    </div>
+    <!-- Add more detail presentations as needed -->
+</div>
 
-        <!-- Purple line separator -->
-        <hr class="border-t-2 border-purple-700 my-6">
 
-        <!-- Image carousel -->
-        <div id="imageCarousel" class="carousel mb-6"></div>
-        <!-- Map and street view containers -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div id="map" class="w-full h-64 rounded-lg bg-indigo-600"></div>
-            <div id="streetView" class="w-full h-64 rounded-lg bg-indigo-600"></div>
+            <!-- Purple line separator -->
+            <hr class="border-t-2 border-purple-700 my-6">
+            <!-- Notification for street view accuracy -->
+            <p class="text-gray-600 text-sm mt-2 justify-center" style="margin-top: -20px;">*Note: The results shown below may not be 100% accurate but are close to the actual address.</p>
+                <br>
+            <!-- Map and street view containers -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div id="map" class="w-full h-64 rounded-lg bg-indigo-600"></div>
+                <div id="streetView" class="w-full h-64 rounded-lg bg-indigo-600">
+                </div>
+            </div>
         </div>
-        <button id="closeModalBtn" class="mt-4 text-white bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-md">Close</button>
+        
+        <!-- Modal Footer -->
+        <div class="modal-footer bg-gray-100 px-8 py-4 rounded-b-lg">
+            <button id="closeModalBtn" class="text-white bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-md">Close</button>
+            <div class="flex justify-end mb-5 font-medium text-gray-900  lg:w-auto md:mb-0" style="margin-top: -30px;">
+                <img src="{% static 'images/logo.png' %}" alt="Pillow Logo" class="h-8 w-auto mr-2"  style="margin-top: -5px;">
+                <span class="text-xl font-black leading-none text-gray-900 select-none" >Pillow<span class="text-indigo-600">.com</span></span>
+            </div>
+        </div>
     </div>
 </div>
+
+
 
 <script>
     var map;
@@ -314,6 +331,7 @@
         streetView = new google.maps.StreetViewPanorama(
             document.getElementById('streetView'),
             {
+                position: { lat: -34.397, lng: 150.644 }, // Set to map's center (replace with actual address)
                 pov: { heading: 165, pitch: 0 }, // Default point of view
                 zoom: 1 // Default zoom level
             }
@@ -343,8 +361,18 @@
                 map.setCenter(residenceLocation);
                 streetView.setPosition(residenceLocation);
 
+                // Geocode the campus address based on the nearest campus
+                var campusAddress;
+                if (nearestCampus === "Mahikeng") {
+                    campusAddress = "Mmabatho Unit 5, Mahikeng, 2790";
+                } else if (nearestCampus === "Potchefstroom") {
+                    campusAddress = "Meyer St, Potchefstroom, 2520";
+                } else if (nearestCampus === "Vanderbijlpark") {
+                    campusAddress = "1174 Hendrick Van Eck Boulevard, Vanderbijlpark";
+                }
+
                 // Geocode the campus address
-                geocoder.geocode({ 'address': "Mmabatho Unit 5, Mahikeng, 2790" }, function (campusResults, status) {
+                geocoder.geocode({ 'address': campusAddress }, function (campusResults, status) {
                     if (status === 'OK' && campusResults && campusResults.length > 0) {
                         var campusLocation = campusResults[0].geometry.location;
 
@@ -372,6 +400,7 @@
         document.getElementById('detailsModal').classList.add('hidden');
     });
 </script>
+
 
 
 

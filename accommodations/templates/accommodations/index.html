@@ -117,7 +117,7 @@
 
     <!-- Section 4: Accommodation Listings -->
     <section id="accommodationSection" class="py-16 md:py-20 lg:py-24 xl:py-38 bg-white" style="margin-top: -10px;">
-        <div class="container max-w-6xl mx-auto">
+        <div class="container  max-w-6xl mx-auto">
             <h2 id="searchResultsHeading"
                 class="w-full text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-gray-900 font-heading mb-8 relative">
                 Featured Accommodations
@@ -171,51 +171,52 @@
             </div>
           </div>
 
-            {% for accommodation in page_obj %}
-            <div id="accommodationCardWrapper" class="mb-8 relative">
-                <!-- Accommodation Card 1 -->
-                <div
-                    class="w-full h-auto overflow-hidden rounded-md bg-white sm:rounded-xl flex flex-col md:flex-row md:space-x-4">
-                    <img class="w-full md:w-1/4 h-64 md:h-auto object-cover rounded-md"
-                        src="https://images.unsplash.com/photo-1515263487990-61b07816b324" alt="Cozy Student House">
-                    <div
-                        class="p-6 flex flex-col flex-grow rounded-md md:w-2/3 border border-gray-200 space-y-4 md:space-y-0 md:space-x-4 md:px-6 md:py-4">
-                        <h3 class="text-lg md:text-xl lg:text-2xl font-semibold mb-2">{{ accommodation.residence_name }}</h3>
-                        <p class="text-gray-500 mb-2">
-                            Accreditation Number: <span
-                                class="text-gray-700 font-medium">{{ accommodation.accreditation_number }}</span>
-                        </p>
-                        <p class="text-gray-500 mb-2">
-                            Number of Beds: <span
-                                class="text-gray-700 font-medium">{{ accommodation.number_of_beds }}</span>
-                        </p>
-                        <p class="text-gray-500 mb-2">
-                            Email: <span class="text-gray-700 font-medium">{{ accommodation.email }}</span>
-                        </p>
-                        <p class="text-gray-500 mb-2">
-                            Cell Number: <span
-                                class="text-gray-700 font-medium">{{ accommodation.cell_number }}</span>
-                        </p>
-                        <p class="text-gray-500 mb-2">
-                            Street Address: <span
-                                class="text-gray-700 font-medium">{{ accommodation.street_address }}</span>
-                        </p>
-                        <p class="text-gray-500 mb-2">
-                            Nearest Campus: <span
-                                class="text-gray-700 font-medium">{{ accommodation.nearest_campus }}</span>
-                        </p>
-                        <!-- Display other fields as needed -->
-                        <div class="flex justify-between items-center mt-2">
-                            <span class="text-indigo-600 font-semibold">Available</span>
-                            <button
-                                class="text-white bg-indigo-600 px-3 py-1 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out transform text-sm md:text-base"
-                                onclick="toggleModal('details-modal')">Details</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-
+          {% for accommodation in page_obj %}
+          <div id="accommodationCardWrapper" class="mb-8 relative">
+              <!-- Accommodation Card 1 -->
+              <div
+                  class="w-full h-auto overflow-hidden rounded-md bg-white sm:rounded-xl flex flex-col md:flex-row md:space-x-4">
+                  <img class="w-full md:w-1/4 h-64 md:h-auto object-cover rounded-md"
+                      src="https://images.unsplash.com/photo-1515263487990-61b07816b324" alt="Cozy Student House">
+                  <div
+                      class="p-6 flex flex-col flex-grow rounded-md md:w-2/3 border border-gray-200 space-y-4 md:space-y-0 md:space-x-4 md:px-6 md:py-4">
+                      <h3 class="text-lg md:text-xl lg:text-2xl font-semibold mb-2">{{ accommodation.residence_name }}</h3>
+                      <p class="text-gray-500 mb-2">
+                          Accreditation Number: <span
+                              class="text-gray-700 font-medium">{{ accommodation.accreditation_number }}</span>
+                      </p>
+                      <p class="text-gray-500 mb-2">
+                          Number of Beds: <span
+                              class="text-gray-700 font-medium">{{ accommodation.number_of_beds }}</span>
+                      </p>
+                      <p class="text-gray-500 mb-2">
+                          Email: <span class="text-gray-700 font-medium">{{ accommodation.email }}</span>
+                      </p>
+                      <p class="text-gray-500 mb-2">
+                          Cell Number: <span
+                              class="text-gray-700 font-medium">{{ accommodation.cell_number }}</span>
+                      </p>
+                      <p class="text-gray-500 mb-2">
+                          Street Address: <span
+                              class="text-gray-700 font-medium">{{ accommodation.street_address }}</span>
+                      </p>
+                      <p class="text-gray-500 mb-2">
+                          Nearest Campus: <span
+                              class="text-gray-700 font-medium">{{ accommodation.nearest_campus }}</span>
+                      </p>
+                      <!-- Display other fields as needed -->
+                      <div class="flex justify-between items-center mt-2">
+                          <span class="text-indigo-600 font-semibold">Available</span>
+                          <button
+                              class="text-white bg-indigo-600 px-3 py-1 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out transform text-sm md:text-base"
+                              onclick="toggleModal('details-modal')">Details</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      
+      
 
 </div>
         
@@ -256,9 +257,11 @@
         </div>
     </section>
 
+
+
 <!-- Accommodation Card Template -->
 <!-- Section 4: Accommodation Listings -->
-<section class="py-20 bg-gray mt-6">
+<section class="py-20 bg-white mt-6" style="margin-top: -5px;">
     <div class="container flex flex-wrap items-center justify-center max-w-6xl mx-auto">
       <h2 class="w-full text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl font-heading mb-8">Featured Accommodations</h2>
                   <!-- Loop through the records and populate the cards -->
@@ -347,10 +350,16 @@
     <footer class="bg-gray-900 text-white py-8">
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
             <!-- Logo -->
-            <div class="mb-4 md:mb-0">
-                <h1 class="text-2xl font-bold">Pillow<span class="text-indigo-600">.com</span></h1>
-                <p class="text-sm">Discover comfortable and secure student accommodations near NWU Mafikeng Campus.</p>
+            <div class="mb-4 md:mb-0 flex items-center">
+                <img src="{% static 'images/logo.png' %}" alt="Pillow Logo" class="h-8 w-auto mr-2">
+                <div>
+                    <h1 class="text-2xl font-bold inline-block">Pillow<span class="text-indigo-600">.com</span></h1>
+                    <p class="text-sm">Discover comfortable and secure student accommodations near NWU Mafikeng Campus.</p>
+                </div>
             </div>
+            
+            
+            
             <!-- Navigation -->
             <nav class="mb-4 md:mb-0">
                 <ul class="flex space-x-4">
@@ -386,29 +395,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function handleFormSubmission(event) {
         event.preventDefault(); // Prevent form submission
 
-        // Show loader overlay immediately after form submission
-        loaderOverlay.classList.remove('hidden');
-
-        // Simulate loader for 3 seconds
-        setTimeout(function () {
-            // Hide loader overlay after 3 seconds
-            loaderOverlay.classList.add('hidden');
-
-            // Show accommodation section after loader disappears
-            accommodationSection.style.display = 'block';
-
-            // Scroll to the accommodation section
-            accommodationSection.scrollIntoView({ behavior: 'smooth' });
-        }, 3000);
-
-        // Simulate skeleton cards disappearance after 8 seconds
-        setTimeout(function () {
-            // Hide skeleton cards after 5 seconds
-            skeletonCard.classList.add('hidden');
-
-            // Show accommodation card wrapper after skeleton cards disappear
-            accommodationCardWrapper.style.display = 'block';
-        }, 8000);
 
         // Submit the form programmatically
         searchForm.submit();
@@ -465,8 +451,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     accommodationCardWrapper.style.display = 'block';
                     // Show pagination after the accommodation card wrapper becomes visible
                     paginationWrapper.style.display = 'block';
-                }, 5000);
-            }, 5000);
+                }, 2000);
+            }, 1000);
         }
                 
         

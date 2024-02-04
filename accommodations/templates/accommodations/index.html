@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-Fr6a+2f9aErTQQ4qT6Ad+TjW+i1FqqvlLMK5LcguGP5K/6ZacUGKpJLxaSuC+NWaZEbUe5XhmWxQpdlzRcKaAg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9dGsjV6QwyIZEubLJsdgNe6dldKH-6dU&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9dGsjV6QwyIZEubLJsdgNe6dldKH-6dU&libraries=places"></script>
 
 </head>
 <style>
@@ -207,22 +209,97 @@
                       <!-- Display other fields as needed -->
                       <div class="flex justify-between items-center mt-2">
                           <span class="text-indigo-600 font-semibold">Available</span>
-                          <button
-                              class="text-white bg-indigo-600 px-3 py-1 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out transform text-sm md:text-base"
-                              onclick="toggleModal('details-modal')">Details</button>
+                          <button class="text-white bg-indigo-600 px-3 py-1 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out transform text-sm md:text-base"
+                onclick="showAccommodationDetails('{{ accommodation.residence_name }}', '{{ accommodation.accreditation_number }}', '{{ accommodation.number_of_beds }}', '{{ accommodation.email }}', '{{ accommodation.cell_number }}', '{{ accommodation.street_address }}', '{{ accommodation.nearest_campus }}')">Details</button>
                       </div>
                   </div>
               </div>
           </div>
-          {% endfor %}
-      
-      
+          {% endfor %} 
+    </div>
 
+<!-- Modal HTML -->
+<div id="detailsModal" class="modal hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center">
+    <div class="modal-content bg-white p-8 rounded-lg shadow-lg max-w-xl">
+        <!-- Accommodation details will be displayed here -->
+        <h2 class="text-2xl font-semibold mb-4 text-indigo-600">Accommodation Details</h2>
+        <div id="accommodationDetails" class="mb-6">
+            <!-- Sample detail presentation -->
+            <div class="flex items-center mb-4">
+                <span class="text-gray-600 font-semibold mr-2">Accreditation Number:</span>
+                <span class="text-gray-800">ACCR123456</span>
+            </div>
+            <div class="flex items-center mb-4">
+                <span class="text-gray-600 font-semibold mr-2">Number of Beds:</span>
+                <span class="text-gray-800">10</span>
+            </div>
+            <!-- Add more detail presentations as needed -->
+        </div>
+        <!-- Image carousel -->
+        <div id="imageCarousel" class="carousel mb-6"></div>
+        <!-- Map container -->
+        <div id="map" class="w-full h-64 rounded-lg mb-6 bg-indigo-600"></div>
+        <button id="closeModalBtn" class="mt-4 text-white bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-md">Close</button>
+    </div>
 </div>
+
+
+
+
+
+<script>
+    var map;
+
+    // Function to initialize the map
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: -34.397, lng: 150.644 }, // Default center (replace with actual address)
+            zoom: 15 // Default zoom level
+        });
+    }
+
+    // Function to show accommodation details in the modal
+    function showAccommodationDetails(residenceName, accreditationNumber, numberOfBeds, email, cellNumber, streetAddress, nearestCampus) {
+        // Construct HTML for the accommodation details
+        var detailsHTML = `
+            <p><strong>Residence Name:</strong> ${residenceName}</p>
+            <p><strong>Accreditation Number:</strong> ${accreditationNumber}</p>
+            <p><strong>Number of Beds:</strong> ${numberOfBeds}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Cell Number:</strong> ${cellNumber}</p>
+            <p><strong>Street Address:</strong> ${streetAddress}</p>
+            <p><strong>Nearest Campus:</strong> ${nearestCampus}</p>
+        `;
+        // Display accommodation details in the modal
+        document.getElementById('accommodationDetails').innerHTML = detailsHTML;
+
+        // Geocode the address and set the map center
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ 'address': streetAddress }, function (results, status) {
+            if (status === 'OK') {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                console.error('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+
+        // Show the modal
+        document.getElementById('detailsModal').classList.remove('hidden');
+    }
+
+    // Close modal when Close button is clicked
+    document.getElementById('closeModalBtn').addEventListener('click', function () {
+        document.getElementById('detailsModal').classList.add('hidden');
+    });
+</script> 
         
-        
-        
-        
+
+
+
 
         <!-- Pagination -->
         <div id="paginationWrapper" class="container mx-auto py-8">

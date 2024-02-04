@@ -86,7 +86,7 @@
                         <div class="mt-20 md:mt-0">
                             <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Welcome to pillow.com</h2>
                             <p class="text-lg md:text-xl lg:text-2xl mb-8">Discover comfortable and secure student
-                                accommodations near NWU all Campuses.</p>
+                                accommodations near NWU Mafikeng Campus.</p>
                         </div>
 
                         <!-- Card for the form -->
@@ -249,67 +249,114 @@
 
 <!-- Modal HTML -->
 <div id="detailsModal" class="modal hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center">
-    <div class="modal-content bg-white p-8 rounded-lg shadow-lg max-w-xl">
+    <div class="modal-content bg-white p-8 rounded-lg shadow-lg max-w-screen-xl">
         <!-- Accommodation details will be displayed here -->
-        <h2 class="text-2xl font-semibold mb-4 text-indigo-600">Accommodation Details</h2>
+        <h2 class="text-2xl font-semibold mb-4 text-indigo-600" id="residenceName">Accommodation Details</h2>
         <div id="accommodationDetails" class="mb-6">
             <!-- Sample detail presentation -->
             <div class="flex items-center mb-4">
                 <span class="text-gray-600 font-semibold mr-2">Accreditation Number:</span>
-                <span class="text-gray-800">ACCR123456</span>
+                <span class="text-gray-800" id="accreditationNumber">ACCR123456</span>
             </div>
             <div class="flex items-center mb-4">
                 <span class="text-gray-600 font-semibold mr-2">Number of Beds:</span>
-                <span class="text-gray-800">10</span>
+                <span class="text-gray-800" id="numberOfBeds">10</span>
+            </div>
+            <!-- Add more detail presentations -->
+            <div class="flex items-center mb-4">
+                <span class="text-gray-600 font-semibold mr-2">Email:</span>
+                <span class="text-gray-800" id="email">example@example.com</span>
+            </div>
+            <div class="flex items-center mb-4">
+                <span class="text-gray-600 font-semibold mr-2">Cell Number:</span>
+                <span class="text-gray-800" id="cellNumber">123-456-7890</span>
+            </div>
+            <div class="flex items-center mb-4">
+                <span class="text-gray-600 font-semibold mr-2">Street Address:</span>
+                <span class="text-gray-800" id="streetAddress">123 Main St</span>
+            </div>
+            <div class="flex items-center mb-4">
+                <span class="text-gray-600 font-semibold mr-2">Nearest Campus:</span>
+                <span class="text-gray-800" id="nearestCampus">Campus Name</span>
+            </div>
+            <div class="flex items-center mb-4">
+                <span class="text-gray-600 font-semibold mr-2">Distance to Nearest Campus:</span>
+                <span class="text-gray-800" id="distanceToCampus">Calculating...</span>
             </div>
             <!-- Add more detail presentations as needed -->
         </div>
+
+        <!-- Purple line separator -->
+        <hr class="border-t-2 border-purple-700 my-6">
+
         <!-- Image carousel -->
         <div id="imageCarousel" class="carousel mb-6"></div>
-        <!-- Map container -->
-        <div id="map" class="w-full h-64 rounded-lg mb-6 bg-indigo-600"></div>
+        <!-- Map and street view containers -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div id="map" class="w-full h-64 rounded-lg bg-indigo-600"></div>
+            <div id="streetView" class="w-full h-64 rounded-lg bg-indigo-600"></div>
+        </div>
         <button id="closeModalBtn" class="mt-4 text-white bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-md">Close</button>
     </div>
 </div>
 
-
-
-
-
 <script>
     var map;
+    var streetView;
 
-    // Function to initialize the map
+    // Function to initialize the map and street view
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             center: { lat: -34.397, lng: 150.644 }, // Default center (replace with actual address)
             zoom: 15 // Default zoom level
         });
+
+        streetView = new google.maps.StreetViewPanorama(
+            document.getElementById('streetView'),
+            {
+                pov: { heading: 165, pitch: 0 }, // Default point of view
+                zoom: 1 // Default zoom level
+            }
+        );
+
+        map.setStreetView(streetView);
     }
 
     // Function to show accommodation details in the modal
     function showAccommodationDetails(residenceName, accreditationNumber, numberOfBeds, email, cellNumber, streetAddress, nearestCampus) {
         // Construct HTML for the accommodation details
-        var detailsHTML = `
-            <p><strong>Residence Name:</strong> ${residenceName}</p>
-            <p><strong>Accreditation Number:</strong> ${accreditationNumber}</p>
-            <p><strong>Number of Beds:</strong> ${numberOfBeds}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Cell Number:</strong> ${cellNumber}</p>
-            <p><strong>Street Address:</strong> ${streetAddress}</p>
-            <p><strong>Nearest Campus:</strong> ${nearestCampus}</p>
-        `;
-        // Display accommodation details in the modal
-        document.getElementById('accommodationDetails').innerHTML = detailsHTML;
+        document.getElementById('residenceName').innerText = residenceName;
+        document.getElementById('accreditationNumber').innerText = accreditationNumber;
+        document.getElementById('numberOfBeds').innerText = numberOfBeds;
+        document.getElementById('email').innerText = email;
+        document.getElementById('cellNumber').innerText = cellNumber;
+        document.getElementById('streetAddress').innerText = streetAddress;
+        document.getElementById('nearestCampus').innerText = nearestCampus;
 
-        // Geocode the address and set the map center
+        // Geocode the residence address
         var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ 'address': streetAddress }, function (results, status) {
-            if (status === 'OK') {
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
+        geocoder.geocode({ 'address': streetAddress }, function (residenceResults, status) {
+            if (status === 'OK' && residenceResults && residenceResults.length > 0) {
+                var residenceLocation = residenceResults[0].geometry.location;
+
+                // Set the map center and street view position
+                map.setCenter(residenceLocation);
+                streetView.setPosition(residenceLocation);
+
+                // Geocode the campus address
+                geocoder.geocode({ 'address': "Mmabatho Unit 5, Mahikeng, 2790" }, function (campusResults, status) {
+                    if (status === 'OK' && campusResults && campusResults.length > 0) {
+                        var campusLocation = campusResults[0].geometry.location;
+
+                        // Calculate the distance between the residence and campus
+                        var distance = google.maps.geometry.spherical.computeDistanceBetween(residenceLocation, campusLocation);
+
+                        // Display the distance in kilometers
+                        var distanceInKm = (distance / 1000).toFixed(2);
+                        document.getElementById('distanceToCampus').innerText = distanceInKm + ' km';
+                    } else {
+                        console.error('Geocode was not successful for the following reason: ' + status);
+                    }
                 });
             } else {
                 console.error('Geocode was not successful for the following reason: ' + status);
@@ -324,7 +371,10 @@
     document.getElementById('closeModalBtn').addEventListener('click', function () {
         document.getElementById('detailsModal').classList.add('hidden');
     });
-</script> 
+</script>
+
+
+
         
 
         <!-- Pagination -->

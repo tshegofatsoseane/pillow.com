@@ -1,7 +1,8 @@
-from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from .models import Accommodation
+from django.http import JsonResponse
+from django.shortcuts import render
 
 def index(request):
     # Get the search query from the URL parameters
@@ -19,7 +20,7 @@ def index(request):
             Q(nearest_campus__icontains=query)
         )
 
-    # Paginate the filtered accommodations list, showing 10 accommodations per page
+    # Paginate the filtered accommodations list, showing 3 accommodations per page
     paginator = Paginator(accommodations_list, 3)
     
     # Get the page number from the URL parameters
@@ -35,5 +36,5 @@ def index(request):
         # If the page parameter is out of range, show the last page
         page_obj = paginator.page(paginator.num_pages)
 
-    # Pass the paginated accommodations to the template for rendering
+    # If it's a regular request, render HTML template
     return render(request, 'accommodations/index.html', {'page_obj': page_obj, 'query': query})

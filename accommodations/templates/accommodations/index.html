@@ -3,187 +3,510 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pillow.com - NWU Mafikeng Campus Accommodation</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-Fr6a+2f9aErTQQ4qT6Ad+TjW+i1FqqvlLMK5LcguGP5K/6ZacUGKpJLxaSuC+NWaZEbUe5XhmWxQpdlzRcKaAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pillow.com - NWU Mafikeng Campus Accommodation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-Fr6a+2f9aErTQQ4qT6Ad+TjW+i1FqqvlLMK5LcguGP5K/6ZacUGKpJLxaSuC+NWaZEbUe5XhmWxQpdlzRcKaAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
+<style>
+    /* Styles for burger menu icon */
+    .burger-menu {
+        display: none;
+    }
 
+    @media (max-width: 767px) {
+        .nav-links {
+            display: none;
+        }
 
+        .burger-menu {
+            display: block;
+        }
+
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 5rem;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            z-index: 999;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .nav-link {
+            padding: 1rem;
+        }
+    }
+</style>
 <body class="bg-gray-100">
-  <!-- Section 1: Navigation -->
-  <header class="w-full px-8 text-gray-700 bg-white">
-    <div class="container flex flex-col flex-wrap items-center justify-between py-5 mx-auto md:flex-row max-w-7xl">
-      <div class="relative flex flex-col md:flex-row">
-        <a href="#_" class="flex items-center mb-5 font-medium text-gray-900 lg:w-auto lg:items-center lg:justify-center md:mb-0">
-          <span class="mx-auto text-xl font-black leading-none text-gray-900 select-none">Pillow<span class="text-indigo-600">.com</span></span>
-        </a>
-        <nav class="flex flex-wrap items-center mb-5 text-base md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200">
-          <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Home</a>
-          <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Accommodations</a>
-          <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Pricing</a>
-          <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Blog</a>
-        </nav>
-      </div>
-
-      <div class="inline-flex items-center ml-5 space-x-6 lg:justify-end">
-        <a href="#" class="text-base font-medium leading-6 text-gray-600 whitespace-no-wrap transition duration-150 ease-in-out hover:text-gray-900">
-          Sign in
-        </a>
-        <a href="#" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
-          Sign up
-        </a>
-      </div>
-    </div>
-  </header>
-
-
-
-    
-<!-- Section 2: Hero Section -->
-<section class="relative px-8 py-50 bg-white md:px-12">
-    <div class="container items-center justify-center max-w-12xl mx-auto relative">
-      <div class="w-full h-96 rounded-md relative">
-        <img src="{% static 'images/varsity-student.jpeg' %}" alt="Hero Image" class="object-cover w-full h-full rounded-md">
-        <div class="absolute inset-0 flex items-center justify-center bg-purple-600 bg-opacity-20">
-          <div class="w-full md:w-1/2 px-6 text-center text-white relative mt-16">
-            <div class="mt-40">
-              <h2 class="text-4xl font-bold mb-4">Welcome to pillow.com</h2>
-              <p class="text-lg mb-8">Discover comfortable and secure student accommodations near NWU Mafikeng Campus.</p>
-            </div>
-  
-  <!-- Card for the form -->
-  <div class="flex items-center p-6 space-x-8 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500 mt-30">
-  
-          <form method="GET" action="{% url 'index' %}" class="mb-8">
-            <div class="flex items-center">
-                <input type="text" name="q" placeholder="Search by Residence Name"
-                       class="appearance-none bg-transparent border-b border-gray-500 w-full py-2 px-20 mr-4 leading-tight focus:outline-none focus:border-blue-500">
-                <button type="submit"
-                        class="bg-indigo-600 hover:bg-blue-700 text-white font-bold py-2 px-10 rounded focus:outline-none focus:shadow-outline">Search</button>
-            </div>
-        </form>
-
-  </div>
-  
-  
-          </div>
+<!-- Section 1: Navigation -->
+<header class="w-full px-8 text-gray-700 bg-white">
+    <div class="container flex flex-col md:flex-row items-center justify-between py-5 mx-auto max-w-7xl">
+        <!-- Logo with Text -->
+        <div class="flex items-center mb-5 font-medium text-gray-900 lg:w-auto lg:items-center lg:justify-center md:mb-0">
+            <img src="{% static 'images/logo.png' %}" alt="Pillow Logo" class="h-8 w-auto mr-2">
+            <span class="text-xl font-black leading-none text-gray-900 select-none">Pillow<span class="text-indigo-600">.com</span></span>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <br><br>
-<!-- Section 4: Accommodation Listings -->
-<section id="accommodationSection" class="py-20 bg-white mt-6">
-    <div class="container max-w-6xl mx-auto">
-        <h2 id="searchResultsHeading" class="w-full text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl font-heading mb-8 relative">
-            Featured Accommodations
-        </h2>
-        {% for accommodation in page_obj %}
-        <div id="accommodationCardWrapper" class="mb-8 relative">
-            <!-- Accommodation Card 1 -->
-            <div class="w-full h-full overflow-hidden rounded-md bg-white sm:rounded-xl flex flex-col md:flex-row md:space-x-4">
-                <img class="w-full md:w-1/4 h-41 object-cover rounded-md" src="https://images.unsplash.com/photo-1515263487990-61b07816b324" alt="Cozy Student House">
-                <div class="p-6 flex flex-col flex-grow rounded-md md:w-2/3 border border-gray-200">
-                    <h3 class="text-lg md:text-xl font-semibold mb-2">{{ accommodation.residence_name }}</h3>
-                    <p class="text-gray-500 mb-2">
-                        Accreditation Number: <span class="text-gray-700 font-medium">{{ accommodation.accreditation_number }}</span>
-                    </p>
-                    <p class="text-gray-500 mb-2">
-                        Number of Beds: <span class="text-gray-700 font-medium">{{ accommodation.number_of_beds }}</span>
-                    </p>
-                    <p class="text-gray-500 mb-2">
-                        Email: <span class="text-gray-700 font-medium">{{ accommodation.email }}</span>
-                    </p>
-                    <p class="text-gray-500 mb-2">
-                        Cell Number: <span class="text-gray-700 font-medium">{{ accommodation.cell_number }}</span>
-                    </p>
-                    <p class="text-gray-500 mb-2">
-                        Street Address: <span class="text-gray-700 font-medium">{{ accommodation.street_address }}</span>
-                    </p>
-                    <p class="text-gray-500 mb-2">
-                        Nearest Campus: <span class="text-gray-700 font-medium">{{ accommodation.nearest_campus }}</span>
-                    </p>
-                    <!-- Display other fields as needed -->
-                    <div class="flex justify-between items-center mt-2">
-                        <span class="text-indigo-600 font-semibold">R2500/month</span>
-                        <button class="text-white bg-indigo-600 px-3 py-1 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out transform text-sm md:text-base" onclick="toggleModal('details-modal')">Details</button>
+        <!-- Navigation Links -->
+        <nav class="flex flex-wrap items-center text-base md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200 nav-links">
+            <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900 nav-link">Home</a>
+            <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900 nav-link">Accommodations</a>
+            <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900 nav-link">Pricing</a>
+            <a href="#_" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900 nav-link">Blog</a>
+        </nav>
+
+        <!-- Burger Menu Icon -->
+        <div class="burger-menu md:hidden">
+            <button id="burgerIcon" class="text-gray-900 hover:text-gray-600 focus:outline-none focus:text-gray-600">
+                <i class="fas fa-bars fa-2x"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+
+    <!-- Section 2: Hero Section -->
+    <section class="relative px-8 py-50 bg-white md:px-12">
+        <div class="container items-center justify-center max-w-12xl mx-auto relative">
+            <div class="w-full h-96 rounded-md relative">
+                <img src="{% static 'images/varsity-student.jpeg' %}" alt="Hero Image"
+                    class="object-cover w-full h-full rounded-md">
+                <div class="absolute inset-0 flex items-center justify-center bg-purple-600 bg-opacity-20">
+                    <div class="w-full md:w-1/2 px-6 text-center text-white relative mt-16">
+                        <div class="mt-20 md:mt-0">
+                            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Welcome to pillow.com</h2>
+                            <p class="text-lg md:text-xl lg:text-2xl mb-8">Discover comfortable and secure student
+                                accommodations near NWU Mafikeng Campus.</p>
+                        </div>
+
+                        <!-- Card for the form -->
+                        <div id="loader-overlay" class="hidden fixed inset-0 bg-purple-600 bg-opacity-50 z-50 flex items-center justify-center">
+                            <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-12 w-12"></div>
+                        </div>
+                        
+                        <div class="flex items-center flex-col md:flex-row md:items-start md:justify-center p-6 space-y-4 md:space-y-0 md:space-x-8 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500 mt-10">
+                            <form id="search-form" method="GET" action="{% url 'index' %}" class="w-full md:w-auto">
+                                <div class="flex items-center">
+                                    <input id="search-input" type="text" name="q" placeholder="Search"
+                                        class="appearance-none bg-transparent text-black border-b border-gray-500 w-full py-2 px-4 md:px-6 lg:px-8 xl:px-10 mr-4 leading-tight focus:outline-none focus:border-blue-500">
+                                    <button id="search-button" type="submit"
+                                        class="bg-indigo-600 hover:bg-blue-700 text-white font-bold py-2 px-6 md:px-8 lg:px-10 rounded focus:outline-none focus:shadow-outline" onclick="showAccommodationSection();">Search</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        
                     </div>
                 </div>
             </div>
+
+
+
+            
         </div>
-        {% endfor %}
+    </section>
+
+
+    <!-- Section 4: Accommodation Listings -->
+    <section id="accommodationSection" class="py-16 md:py-20 lg:py-24 xl:py-38 bg-white" style="margin-top: -10px;">
+        <div class="container max-w-6xl mx-auto">
+            <h2 id="searchResultsHeading"
+                class="w-full text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-gray-900 font-heading mb-8 relative">
+                Featured Accommodations
+            </h2>
+
+        <!-- Skeleton Loading Card -->
+        <div id="skeletonCard" class="mb-8 relative animate-pulse">
+            <div class="w-full h-full overflow-hidden rounded-md bg-gray-296 sm:rounded-xl flex flex-col md:flex-row md:space-x-4">
+              <div class="w-full md:w-1/4 h-41 bg-gray-200"></div>
+              <div class="p-6 flex flex-col flex-grow rounded-md md:w-2/3 border border-gray-200">
+                <div class="w-60 h-4 bg-indigo-200 mb-2"></div>
+                <div class="w-32 h-4 bg-gray-200 mb-2"></div>
+                <div class="w-80 h-4 bg-gray-200 mb-2"></div>
+                <div class="w-80 h-4 bg-gray-200 mb-2"></div>
+                <br>
+          <div class="flex">
+            <div class="w-24 h-4 bg-indigo-200 mr-3"></div>
+            <span class="bg-indigo-300 w-16 mt-2 h-4 animate-pulse mr-3 px-2 inline-flex items-center ml-auto leading-none text-sm pr-5 py-1"></span>
+          </div>
+              </div>
+            </div>
+            <br>
+              <div class="w-full h-full overflow-hidden rounded-md bg-gray-296 sm:rounded-xl flex flex-col md:flex-row md:space-x-4">
+              <div class="w-full md:w-1/4 h-41 bg-gray-200"></div>
+              <div class="p-6 flex flex-col flex-grow rounded-md md:w-2/3 border border-gray-200">
+                <div class="w-60 h-4 bg-indigo-200 mb-2"></div>
+                <div class="w-32 h-4 bg-gray-200 mb-2"></div>
+                <div class="w-80 h-4 bg-gray-200 mb-2"></div>
+                <div class="w-80 h-4 bg-gray-200 mb-2"></div>
+                <br>
+                 <div class="flex">
+                <div class="w-24 h-4 bg-indigo-200 mr-3"></div>
+                <span class="bg-indigo-300 w-16 mt-2 h-4 animate-pulse mr-3 px-2 inline-flex items-center ml-auto leading-none text-sm pr-5 py-1"></span>
+              </div>
+              </div>
+            </div>
+          <br>
+              <div class="w-full h-full overflow-hidden rounded-md bg-gray-296 sm:rounded-xl flex flex-col md:flex-row md:space-x-4">
+              <div class="w-full md:w-1/4 h-41 bg-gray-200"></div>
+              <div class="p-6 flex flex-col flex-grow rounded-md md:w-2/3 border border-gray-200">
+                <div class="w-60 h-4 bg-indigo-200 mb-2"></div>
+                <div class="w-32 h-4 bg-gray-200 mb-2"></div>
+                <div class="w-80 h-4 bg-gray-200 mb-2"></div>
+                <div class="w-80 h-4 bg-gray-200 mb-2"></div>
+                <br>
+              <div class="flex">
+                <div class="w-24 h-4 bg-indigo-200 mr-3"></div>
+                <span class="bg-indigo-300 w-16 mt-2 h-4 animate-pulse mr-3 px-2 inline-flex items-center ml-auto leading-none text-sm pr-5 py-1"></span>
+              </div>
+              </div>
+            </div>
+          </div>
+
+            {% for accommodation in page_obj %}
+            <div id="accommodationCardWrapper" class="mb-8 relative">
+                <!-- Accommodation Card 1 -->
+                <div
+                    class="w-full h-auto overflow-hidden rounded-md bg-white sm:rounded-xl flex flex-col md:flex-row md:space-x-4">
+                    <img class="w-full md:w-1/4 h-64 md:h-auto object-cover rounded-md"
+                        src="https://images.unsplash.com/photo-1515263487990-61b07816b324" alt="Cozy Student House">
+                    <div
+                        class="p-6 flex flex-col flex-grow rounded-md md:w-2/3 border border-gray-200 space-y-4 md:space-y-0 md:space-x-4 md:px-6 md:py-4">
+                        <h3 class="text-lg md:text-xl lg:text-2xl font-semibold mb-2">{{ accommodation.residence_name }}</h3>
+                        <p class="text-gray-500 mb-2">
+                            Accreditation Number: <span
+                                class="text-gray-700 font-medium">{{ accommodation.accreditation_number }}</span>
+                        </p>
+                        <p class="text-gray-500 mb-2">
+                            Number of Beds: <span
+                                class="text-gray-700 font-medium">{{ accommodation.number_of_beds }}</span>
+                        </p>
+                        <p class="text-gray-500 mb-2">
+                            Email: <span class="text-gray-700 font-medium">{{ accommodation.email }}</span>
+                        </p>
+                        <p class="text-gray-500 mb-2">
+                            Cell Number: <span
+                                class="text-gray-700 font-medium">{{ accommodation.cell_number }}</span>
+                        </p>
+                        <p class="text-gray-500 mb-2">
+                            Street Address: <span
+                                class="text-gray-700 font-medium">{{ accommodation.street_address }}</span>
+                        </p>
+                        <p class="text-gray-500 mb-2">
+                            Nearest Campus: <span
+                                class="text-gray-700 font-medium">{{ accommodation.nearest_campus }}</span>
+                        </p>
+                        <!-- Display other fields as needed -->
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-indigo-600 font-semibold">Available</span>
+                            <button
+                                class="text-white bg-indigo-600 px-3 py-1 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out transform text-sm md:text-base"
+                                onclick="toggleModal('details-modal')">Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+</div>
+        
+        
+        
+        
+
+        <!-- Pagination -->
+        <div id="paginationWrapper" class="container mx-auto py-8">
+            <ul class="flex justify-center">
+                {% if page_obj.has_previous %}
+                <li>
+                    <a href="?q={{ query }}&page=1"
+                        class="px-4 py-2 mx-1 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">First</a>
+                </li>
+                <li>
+                    <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}"
+                        class="px-4 py-2 mx-1 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Previous</a>
+                </li>
+                {% endif %}
+
+                <li>
+                    <span
+                        class="px-4 py-2 mx-1 bg-indigo-600 text-white rounded-md">{{ page_obj.number }}</span>
+                </li>
+
+                {% if page_obj.has_next %}
+                <li>
+                    <a href="?q={{ query }}&page={{ page_obj.next_page_number }}"
+                        class="px-4 py-2 mx-1 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Next</a>
+                </li>
+                <li>
+                    <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}"
+                        class="px-4 py-2 mx-1 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Last</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </section>
+
+<!-- Accommodation Card Template -->
+<!-- Section 4: Accommodation Listings -->
+<section class="py-20 bg-gray mt-6">
+    <div class="container flex flex-wrap items-center justify-center max-w-6xl mx-auto">
+      <h2 class="w-full text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl font-heading mb-8">Featured Accommodations</h2>
+                  <!-- Loop through the records and populate the cards -->
+                  {% for accommodation in page_obj %}
+<div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8 flex-shrink-0">
+    <div class="w-full h-full overflow-hidden rounded-md shadow-xl sm:rounded-xl flex flex-col">
+        <img class="w-full h-2/3 object-cover" src="https://images.unsplash.com/photo-1515263487990-61b07816b324" alt="Cozy Student House">
+        <div class="bg-white p-6 flex flex-col flex-grow rounded-md shadow-lg transition duration-300 ease-in-out transform hover:shadow-2xl">
+            <h3 class="text-2xl font-semibold mb-2">{{ accommodation.residence_name }}</h3>
+            <p class="text-gray-500 mb-4">Number of beds: <span class="text-purple-600 font-medium"><i class="fas fa-check-circle"></i> {{ accommodation.number_of_beds }}</span></p>
+            <p class="text-gray-500 mb-4">Email: <span class="text-gray-700 font-medium">{{ accommodation.email }}</span></p>
+            <p class="text-gray-500 mb-4">Cell number: <span class="text-purple-600 font-medium"><i class="fas fa-check-circle"></i> {{ accommodation.cell_number }}</span></p>
+            <p class="text-gray-500 mb-4">Street address: <span class="text-gray-700 font-medium">{{ accommodation.street_address }}</span></p>
+            <p class="text-gray-500 mb-4">Nearest campus: <span class="text-gray-700 font-medium">{{ accommodation.nearest_campus }}</span></p>
+            <div class="flex justify-between items-center mt-4">
+                <span class="text-indigo-600 font-semibold">Available</span>
+                <a href="#" class="text-white bg-indigo-600 px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out transform">Details</a>
+            </div>
+        </div>
     </div>
-    <br>
+</div>
+{% endfor %}
+</div>
 </section>
 
-<!-- Pagination -->
-<div class="container mx-auto py-8">
-    <ul class="flex justify-center">
-        {% if page_obj.has_previous %}
-        <li>
-            <a href="?q={{ query }}&page=1" class="px-4 py-2 mx-1 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">First</a>
-        </li>
-        <li>
-            <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}" class="px-4 py-2 mx-1 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Previous</a>
-        </li>
-        {% endif %}
 
-        <li>
-            <span class="px-4 py-2 mx-1 bg-indigo-600 text-white rounded-md">{{ page_obj.number }}</span>
-        </li>
+  
 
-        {% if page_obj.has_next %}
-        <li>
-            <a href="?q={{ query }}&page={{ page_obj.next_page_number }}" class="px-4 py-2 mx-1 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Next</a>
-        </li>
-        <li>
-            <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}" class="px-4 py-2 mx-1 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Last</a>
-        </li>
-        {% endif %}
-    </ul>
-</div>
+    <!-- Section 3: Feature Highlights -->
+    <section class="py-16 md:py-20 lg:py-24 xl:py-32 bg-gray-200">
+        <div class="container items-center max-w-6xl px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
+            <div class="flex flex-wrap items-center -mx-3">
+                <div class="order-1 w-full px-3 lg:w-1/2 lg:order-0">
+                    <div class="w-full lg:max-w-md">
+                        <h2 class="mb-4 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight sm:text-4xl font-heading">
+                            Why Choose Pillow.com?</h2>
+                        <p class="mb-4 font-medium tracking-tight text-gray-600 lg:mb-6">Explore the benefits of
+                            choosing Pillow.com for your student accommodation needs.</p>
 
-
-  <!-- Section 3: Feature Highlights -->
-  <section class="py-20 bg-gray">
-    <div class="container items-center max-w-6xl px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
-      <div class="flex flex-wrap items-center -mx-3">
-        <div class="order-1 w-full px-3 lg:w-1/2 lg:order-0">
-          <div class="w-full lg:max-w-md">
-            <h2 class="mb-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl font-heading">Why Choose Pillow.com?</h2>
-            <p class="mb-4 font-medium tracking-tight text-gray-400 xl:mb-6">Explore the benefits of choosing Pillow.com for your student accommodation needs.</p>
-
-            <ul>
-              <li class="flex items-center py-2 space-x-4 xl:py-3">
-                <svg class="w-8 h-8 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
-                <span class="font-medium text-gray-500">More accessible and efficient alternative to static PDF lists</span>
-              </li>
-              <li class="flex items-center py-2 space-x-4 xl:py-3">
-                <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-                <span class="font-medium text-gray-500">Accredited and non-accredited reliable student housing</span>
-              </li>
-              <li class="flex items-center py-2 space-x-4 xl:py-3">
-                <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                <span class="font-medium text-gray-500">No login required.</span>
-              </li>
-            </ul>
-          </div>
+                        <ul>
+                            <li class="flex items-center py-2 space-x-4 xl:py-3">
+                                <svg class="w-8 h-8 text-pink-500" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z">
+                                    </path>
+                                </svg>
+                                <span class="font-medium text-gray-700">More accessible and efficient alternative to
+                                    static PDF lists</span>
+                            </li>
+                            <li class="flex items-center py-2 space-x-4 xl:py-3">
+                                <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                </svg>
+                                <span class="font-medium text-gray-700">Accredited and non-accredited reliable student
+                                    housing</span>
+                            </li>
+                            <li class="flex items-center py-2 space-x-4 xl:py-3">
+                                <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                    </path>
+                                </svg>
+                                <span class="font-medium text-gray-700">No login required.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="w-full px-3 mb-12 lg:w-1/2 order-0 lg:order-1 lg:mb-0"><img
+                        class="mx-auto sm:max-w-sm lg:max-w-full"
+                        src="https://cdn.devdojo.com/images/november2020/feature-graphic.png" alt="Feature Image">
+                </div>
+            </div>
         </div>
-        <div class="w-full px-3 mb-12 lg:w-1/2 order-0 lg:order-1 lg:mb-0"><img class="mx-auto sm:max-w-sm lg:max-w-full" src="https://cdn.devdojo.com/images/november2020/feature-graphic.png" alt="Feature Image"></div>
-      </div>
+    </section>
+
+    <div id="overlay"
+        class="fixed top-0 left-0 w-full h-full bg-gray-800 opacity-50 flex items-center justify-center hidden">
+        <div class="loader ease-linear rounded-full border-t-4 border-blue-500 h-12 w-12"></div>
     </div>
-  </section>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
+            <!-- Logo -->
+            <div class="mb-4 md:mb-0">
+                <h1 class="text-2xl font-bold">Pillow<span class="text-indigo-600">.com</span></h1>
+                <p class="text-sm">Discover comfortable and secure student accommodations near NWU Mafikeng Campus.</p>
+            </div>
+            <!-- Navigation -->
+            <nav class="mb-4 md:mb-0">
+                <ul class="flex space-x-4">
+                    <li><a href="#" class="text-sm hover:text-indigo-600">Home</a></li>
+                    <li><a href="#" class="text-sm hover:text-indigo-600">Accommodations</a></li>
+                    <li><a href="#" class="text-sm hover:text-indigo-600">Pricing</a></li>
+                    <li><a href="#" class="text-sm hover:text-indigo-600">Blog</a></li>
+                </ul>
+            </nav>
+            <!-- Social media links -->
+            <div>
+                <ul class="flex space-x-4">
+                    <li><a href="#" class="text-sm hover:text-indigo-600"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#" class="text-sm hover:text-indigo-600"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#" class="text-sm hover:text-indigo-600"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchForm = document.getElementById('search-form');
+    const accommodationSection = document.getElementById('accommodationSection');
+    const loaderOverlay = document.getElementById('loader-overlay');
+    const skeletonCard = document.getElementById('skeletonCard');
+    const accommodationCardWrapper = document.getElementById('accommodationCardWrapper');
+
+    // Hide accommodation section initially
+    accommodationSection.style.display = 'none';
+
+    // Function to handle form submission
+    function handleFormSubmission(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Show loader overlay immediately after form submission
+        loaderOverlay.classList.remove('hidden');
+
+        // Simulate loader for 3 seconds
+        setTimeout(function () {
+            // Hide loader overlay after 3 seconds
+            loaderOverlay.classList.add('hidden');
+
+            // Show accommodation section after loader disappears
+            accommodationSection.style.display = 'block';
+
+            // Scroll to the accommodation section
+            accommodationSection.scrollIntoView({ behavior: 'smooth' });
+        }, 3000);
+
+        // Simulate skeleton cards disappearance after 8 seconds
+        setTimeout(function () {
+            // Hide skeleton cards after 5 seconds
+            skeletonCard.classList.add('hidden');
+
+            // Show accommodation card wrapper after skeleton cards disappear
+            accommodationCardWrapper.style.display = 'block';
+        }, 8000);
+
+        // Submit the form programmatically
+        searchForm.submit();
+    }
+
+    // Function to display search results
+    function displaySearchResults() {
+        // Example: Update the text or content to display search results
+        const searchResultsHeading = document.getElementById('searchResultsHeading');
+        searchResultsHeading.textContent = "Search results are displayed here.";
+    }
+
+    // Add event listener to the search form for submission
+    searchForm.addEventListener('submit', handleFormSubmission);
+});
 
 
-<div id="overlay" class="fixed top-0 left-0 w-full h-full bg-gray-800 opacity-50 flex items-center justify-center hidden">
-  <div class="loader ease-linear rounded-full border-t-4 border-blue-500 h-12 w-12"></div>
-</div>
+</script>
+    
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const loaderOverlay = document.getElementById('loader-overlay');
+        const accommodationSection = document.getElementById('accommodationSection');
+        const skeletonCard = document.getElementById('skeletonCard');
+        const accommodationCardWrapper = document.getElementById('accommodationCardWrapper');
+        const paginationWrapper = document.getElementById('paginationWrapper');
+
+        // Initially hide the accommodation card wrapper and pagination
+        accommodationCardWrapper.style.display = 'none';
+        paginationWrapper.style.display = 'none';
+
+        // Function to show overlay for 5 seconds
+        function showOverlay() {
+            // Show loader overlay
+            loaderOverlay.classList.remove('hidden');
+
+            // Simulate overlay for 5 seconds
+            setTimeout(function () {
+                // Hide loader overlay after 5 seconds
+                loaderOverlay.classList.add('hidden');
+                
+                // Show accommodation section after overlay disappears
+                accommodationSection.style.display = 'block';
+                
+                // Scroll to the accommodation section
+                accommodationSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                // Show skeleton card for 5 seconds and then hide it
+                skeletonCard.style.display = 'block';
+                setTimeout(function() {
+                    skeletonCard.style.display = 'none';
+                    // Show the accommodation card wrapper after the skeleton card disappears
+                    accommodationCardWrapper.style.display = 'block';
+                    // Show pagination after the accommodation card wrapper becomes visible
+                    paginationWrapper.style.display = 'block';
+                }, 5000);
+            }, 5000);
+        }
+                
+        
+
+        // Check if the page is loaded as a result of form submission
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('q')) {
+            // Call the showOverlay function when the page is loaded after form submission
+            showOverlay();
+        }
+    });
+</script>
+
+    
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchResultsHeading = document.getElementById('searchResultsHeading');
+
+        // Function to update the heading with search results
+        function updateHeading(searchString) {
+            searchResultsHeading.textContent = `Search results for "${searchString}"`;
+        }
+
+        // Get the search query from the URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const queryString = params.get('q');
+
+        // Update the heading if the search query exists
+        if (queryString) {
+            updateHeading(queryString);
+        }
+    });
+</script>
 
 
+    
+    
+    
+    
+    
 
 </body>
 

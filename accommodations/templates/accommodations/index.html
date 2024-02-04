@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pillow.com - NWU Mafikeng Campus Accommodation</title>
+    <title>Pillow.com - NWU Campus Accommodation Finder</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-Fr6a+2f9aErTQQ4qT6Ad+TjW+i1FqqvlLMK5LcguGP5K/6ZacUGKpJLxaSuC+NWaZEbUe5XhmWxQpdlzRcKaAg=="
@@ -86,7 +86,7 @@
                         <div class="mt-20 md:mt-0">
                             <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Welcome to pillow.com</h2>
                             <p class="text-lg md:text-xl lg:text-2xl mb-8">Discover comfortable and secure student
-                                accommodations near NWU Mafikeng Campus.</p>
+                                accommodations near NWU all Campuses.</p>
                         </div>
 
                         <!-- Card for the form -->
@@ -112,7 +112,36 @@
 
 
 
-            
+<!-- Notification Banner -->
+<div id="missingInfoBanner" class="bg-purple-300 text-gray-900 p-4 text-center relative">
+    <button id="closeBannerBtn" class="absolute top-0 right-0 mr-4 mt-2 text-gray-700 hover:text-gray-900 focus:outline-none">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+    <p class="font-bold">Some accommodations are missing important information!</p>
+    <p>Please double-check the listings for residence names, contact details, and other essential information.</p>
+</div>
+
+<!-- JavaScript to conditionally show/hide the notification banner -->
+<script>
+    // Close button functionality
+    document.getElementById('closeBannerBtn').addEventListener('click', function() {
+        document.getElementById('missingInfoBanner').style.display = 'none';
+    });
+
+    // Check if any accommodations are missing important information
+    const accommodationsWithMissingInfo = checkForMissingInfo(); // Implement this function
+
+    // Display the notification banner if missing information is detected
+    if (accommodationsWithMissingInfo.length > 0) {
+        document.getElementById('missingInfoBanner').style.display = 'block';
+    } else {
+        document.getElementById('missingInfoBanner').style.display = 'none';
+    }
+</script>
+
+
         </div>
     </section>
 
@@ -297,9 +326,6 @@
     });
 </script> 
         
-
-
-
 
         <!-- Pagination -->
         <div id="paginationWrapper" class="container mx-auto py-8">

@@ -83,6 +83,7 @@ WSGI_APPLICATION = 'accommodation_search.wsgi.application'
 
 # Secret Key
 SECRET_KEY = config('SECRET_KEY')
+ 
 
 # Database Configuration
 DATABASES = {

@@ -7,9 +7,9 @@ from django.shortcuts import render
 def index(request):
     # Get the search query from the URL parameters
     query = request.GET.get('q')
-    
-    # Fetch all accommodations from the database
-    accommodations_list = Accommodation.objects.all()
+
+    # Fetch all accommodations except those with residence_name="0"
+    accommodations_list = Accommodation.objects.exclude(residence_name="0")
 
     # If there's a search query, filter the accommodations list
     if query:
@@ -22,10 +22,10 @@ def index(request):
 
     # Paginate the filtered accommodations list, showing 3 accommodations per page
     paginator = Paginator(accommodations_list, 3)
-    
+
     # Get the page number from the URL parameters
     page_number = request.GET.get('page')
-    
+
     try:
         # Try to fetch the requested page of accommodations
         page_obj = paginator.page(page_number)

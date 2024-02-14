@@ -111,7 +111,7 @@
 
 
 <!-- Notification Banner -->
-<div id="missingInfoBanner" class="bg-purple-300 text-gray-900 p-4 text-center relative">
+<div hidden id="missingInfoBanner" class="bg-purple-300 text-gray-900 p-4 text-center relative">
     <button id="closeBannerBtn" class="absolute top-0 right-0 mr-4 mt-2 text-gray-700 hover:text-gray-900 focus:outline-none">
         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -453,7 +453,9 @@
         {% if accommodation.residence_name != "0" %}
           <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8 flex-shrink-0">
             <div class="w-full h-full overflow-hidden rounded-md shadow-xl sm:rounded-xl flex flex-col">
-              <img class="w-full h-2/3 object-cover" src="https://images.unsplash.com/photo-1515263487990-61b07816b324" alt="Cozy Student House">
+                <img class="w-full h-64 md:h-auto object-cover rounded-md"
+                src="https://maps.googleapis.com/maps/api/streetview?size=400x300&location={{ accommodation.street_address|urlencode }}&key=AIzaSyD9dGsjV6QwyIZEubLJsdgNe6dldKH-6dU"
+                alt="Street View Image">
               <div class="bg-white p-6 flex flex-col flex-grow rounded-md shadow-lg transition duration-300 ease-in-out transform hover:shadow-2xl">
                 <h3 class="text-2xl font-semibold mb-2">{{ accommodation.residence_name }}</h3>
                 <p class="text-gray-500 mb-4">Number of beds: <span class="text-purple-600 font-medium"><i class="fas fa-check-circle"></i> {{ accommodation.number_of_beds }}</span></p>

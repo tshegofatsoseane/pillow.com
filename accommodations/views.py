@@ -8,8 +8,11 @@ def index(request):
     # Get the search query from the URL parameters
     query = request.GET.get('q')
 
-    # Fetch all accommodations except those with residence_name="0"
-    accommodations_list = Accommodation.objects.exclude(residence_name="0")
+    # Exclude specific residence names
+    excluded_names = ["0", "20154 Dibate Village Mmabatho"]
+
+    # Fetch all accommodations except those with excluded names
+    accommodations_list = Accommodation.objects.exclude(residence_name__in=excluded_names)
 
     # If there's a search query, filter the accommodations list
     if query:
@@ -25,6 +28,7 @@ def index(request):
 
     # Get the page number from the URL parameters
     page_number = request.GET.get('page')
+
 
     try:
         # Try to fetch the requested page of accommodations

@@ -20,3 +20,7 @@ Frontend: Standard web technologies (HTML, CSS, JavaScript) are utilized for bui
 ## Challenges
 One of the main challenges encountered during the development of Pillow.com is the intermittent lack of data returned by the Google Maps API. This inconsistency in data retrieval poses a significant obstacle, as it affects the accuracy and completeness of residence information displayed to users. Despite efforts to optimize API requests and handle edge cases, occasional instances of missing or incomplete data still arise, impacting the overall reliability of the platform. Addressing this challenge requires ongoing monitoring, fine-tuning of API usage, and implementing robust error-handling mechanisms to mitigate the impact on user experience.
 
+## Features Completed:
+
+1. Search and Filter Functionality: Pillow.com allows students to search for accredited accommodations based on various criteria such as location, rental price, amenities, and accreditation status. Students can filter search results to narrow down options and find accommodations that meet their specific requirements.
+2. Detailed Residence Profiles: Each residence listing on Pillow.com includes comprehensive details such as address, contact information, bed capacity, rental price, amenities, and accreditation status. This information empowers students to make informed decisions about their living arrangements by providing them with all the necessary information at their fingertips.

@@ -12,3 +12,11 @@ Tshegofatso Seane (Backend Developer): Responsible for backend development, incl
 Omphile Gopane (Frontend Developer): Handles frontend development, focusing on creating a responsive and intuitive user interface.
 
 Timeline: The project is scheduled to be completed within a three-month timeframe, with regular milestones for development, testing, and deployment.
+
+## Technologies Used
+Backend: Django framework is chosen for its high-level abstractions, built-in features like ORM and authentication, and scalability.
+Frontend: Standard web technologies (HTML, CSS, JavaScript) are utilized for building a responsive and user-friendly interface, prioritizing simplicity and accessibility.
+
+## Challenges
+One of the main challenges encountered during the development of Pillow.com is the intermittent lack of data returned by the Google Maps API. This inconsistency in data retrieval poses a significant obstacle, as it affects the accuracy and completeness of residence information displayed to users. Despite efforts to optimize API requests and handle edge cases, occasional instances of missing or incomplete data still arise, impacting the overall reliability of the platform. Addressing this challenge requires ongoing monitoring, fine-tuning of API usage, and implementing robust error-handling mechanisms to mitigate the impact on user experience.
+

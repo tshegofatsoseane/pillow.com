@@ -31,3 +31,9 @@ To install and set up the Pillow.com project locally, follow these steps:
 
    ```bash
    git clone https://github.com/tshegofatsoseane/pillow.com.git
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd pillow.com
+

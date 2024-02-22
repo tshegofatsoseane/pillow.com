@@ -37,3 +37,43 @@ To install and set up the Pillow.com project locally, follow these steps:
    ```bash
    cd pillow.com
 
+3. Install the project dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    
+4. Create a .env file in the project root directory and set up your environment variables.
+
+5. Run database migrations to set up the database schema:
+
+   ```bash
+   python manage.py migrate
+
+6. Start the development server:
+
+   ```bash
+   python manage.py runserver
+
+7. Access the Pillow.com application in your web browser at http://localhost:8000.
+   
+## Usage
+To use Pillow.com, follow these steps:
+
+1. Navigate to the Pillow.com application in your web browser.
+
+2. Explore the available features such as searching for accommodations, filtering search results, and viewing detailed residence profiles.
+
+
+## Contributing
+We welcome contributions from the community to help improve Pillow.com. If you'd like to contribute, please follow these guidelines:
+
+1. Fork the repository on GitHub.
+
+2. Make your desired changes in a new branch.
+
+3. Ensure that your code follows the project's coding standards and conventions.
+
+4. Test your changes thoroughly.
+
+5. Submit a pull request with a clear description of your changes and why they are necessary.
+

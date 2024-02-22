@@ -1,4 +1,4 @@
 # pillow.com
 
-![Alt Text](home.png)
+![Hompage screenshot](home.png)
 

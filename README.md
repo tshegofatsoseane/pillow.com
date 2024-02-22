@@ -22,10 +22,12 @@ One of the main challenges encountered during the development of Pillow.com is t
 ## Features Completed:
 
 1. Search and Filter Functionality: Pillow.com allows students to search for accredited accommodations based on various criteria such as location, rental price, amenities, and accreditation status. Students can filter search results to narrow down options and find accommodations that meet their specific requirements.
+   
 ![HSearch screenshot](search.png)
 
 
 3. Detailed Residence Profiles: Each residence listing on Pillow.com includes comprehensive details such as address, contact information, bed capacity, rental price, amenities, and accreditation status. This information empowers students to make informed decisions about their living arrangements by providing them with all the necessary information at their fingertips.
+   
 ![HDetails screenshot](details.png)
 
 ## Installation

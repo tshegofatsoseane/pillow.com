@@ -14,6 +14,7 @@ Timeline: The project is scheduled to be completed within a three-month timefram
 
 ## Technologies Used
 Backend: Django framework is chosen for its high-level abstractions, built-in features like ORM and authentication, and scalability.
+
 Frontend: Standard web technologies (HTML, CSS, JavaScript) are utilized for building a responsive and user-friendly interface, prioritizing simplicity and accessibility.
 
 ## Challenges

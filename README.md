@@ -1,4 +1,4 @@
-# Pillow.com: Simplifying Student Accommodation Search
+# Pillow.com: Simplifying Student Accommodation Search.
 
 ![Hompage screenshot](home.png)
 

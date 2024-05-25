@@ -7,3 +7,6 @@ venv/
 # Exclude database files
 *.sqlite3
 *.db
+
+# Exclude __pycache__
+__pycahce__

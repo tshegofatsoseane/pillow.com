@@ -32,7 +32,7 @@ One of the main challenges encountered during the development of Pillow.com is t
 ![HDetails screenshot](details.png)
 
 ## Installation
-To install and set up the Pillow.com project locally, follow these steps:
+To install and set up the Pillow.com project locally, follow these steps (In sudo mode: via `sudo su` to avoid errors trying to connect to your database engine):
 
 1. Clone the repository to your local machine using the following command:
 
@@ -44,24 +44,45 @@ To install and set up the Pillow.com project locally, follow these steps:
    ```bash
    cd pillow.com
 
-3. Install the project dependencies:
+3. Create a .env file in the project root directory and set up your environment variables, then activate it.
+
+4. Install the project dependencies:
 
     ```bash
     pip install -r requirements.txt
-    
-4. Create a .env file in the project root directory and set up your environment variables.
 
-5. Run database migrations to set up the database schema:
+5. Set up a database in your desired SQL engine:
+
+    MySQL
+    ```MySQL
+    CREATE DATABASE if not exist pillow;
+
+6. Make these following environmental variables:
+
+    ```bash
+    export SECRET_KEY=your_secret_key # You can generate a key with 'secrets' module Python3
+
+    export DB_ENGINE='django.db.backends.mysql'
+
+    export DB_NAME=pillow
+
+    export DB_USERNAME=root
+
+    export DB_HOST=localhost
+
+    export DB_PASSWORD=your_pass # Replace your pass with password to your database
+
+7. Run database migrations to set up the database schema:
 
    ```bash
    python manage.py migrate
 
-6. Start the development server:
+8. Start the development server:
 
    ```bash
    python manage.py runserver
 
-7. Access the Pillow.com application in your web browser at http://localhost:8000.
+9. Access the Pillow.com application in your web browser at http://localhost:8000.
    
 ## Usage
 To use Pillow.com, follow these steps:

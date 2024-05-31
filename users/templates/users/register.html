@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-1 d-flex justify-content-center align-items-center">
-                    <a href="{% url 'index' %}" class="btn btn-primary bg-indigo-500">Back</a>
+                    <a href="{% url 'landlord-home' %}" class="btn btn-primary bg-indigo-500">Back</a>
                 </div>
                 <div class="col-11">
                     <div class="mb-4 mt-4 d-flex justify-content-center align-items-center">
@@ -30,7 +30,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h2 class="card-title">Already have an account?</h2>
-                            <p class="card-text">You can <a href="#">sign in</a></p>
+                            <p class="card-text">You can <a href="{% url 'login' %}">sign in</a></p>
                         </div>
                     </div>
                 </div>

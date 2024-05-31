@@ -1,0 +1,61 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-1 d-flex justify-content-center align-items-center">
+                    <a href="{% url 'index' %}" class="btn btn-primary bg-indigo-500">Back</a>
+                </div>
+                <div class="col-11">
+                    <div class="mb-4 mt-4 d-flex justify-content-center align-items-center">
+                        <img src="{% static 'images/logo.png' %}" alt="Pillow Logo" class="h-8 w-auto mr-2" style="width:60px; height:60px;">
+                        <h2 class="ms-2">Pillow.com</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-lg-5 col-md-12 col-sm-12">
+                <img src="{% static 'images/varsity-student.jpeg' %}" alt="Pillow Logo" class="img-fluid" style="width:100%;">
+            </div>
+            <div class="col-lg-7 col-sm-12 card border-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 mb-5">
+                            <div class="card border-0">
+                                <div class="card-body">
+                                    <h1 class="display-1 fw-bold mb-5">Focus on benefits.</h1>
+                                    <p class="lead">Student Housing Made Easy: Streamline Your Rental Process</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 mb-5">
+                            <div class="card border-0">
+                                <div class="card-body">
+                                    <h1 class="display-1 fw-bold mb-5">Highlight niche.</h1>
+                                    <p class="lead mb-5">Student Housing Made Easy: Streamline Your Rental Process</p>
+                                    <a class="btn btn-lg btn-outline-primary" href="{% url 'register' %}">Get started</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 d-sm-none d-lg-block">
+                <img src="{% static 'images/varsity-student.jpeg' %}" alt="Pillow Logo" class="img-fluid" style="width:100%;">
+            </div>
+        </div>
+    </div>
+{% endblock content %}

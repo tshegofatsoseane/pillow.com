@@ -1,0 +1,58 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-1 d-flex justify-content-center align-items-center">
+                    <a href="{% url 'index' %}" class="btn btn-primary bg-indigo-500">Back</a>
+                </div>
+                <div class="col-11">
+                    <div class="mb-4 mt-4 d-flex justify-content-center align-items-center">
+                        <img src="{% static 'images/logo.png' %}" alt="Pillow Logo" class="h-8 w-auto mr-2" style="width:60px; height:60px;">
+                        <h2 class="ms-2">Pillow.com</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-body p-5" style="background:linear-gradient(45deg, #5a5bf3, #91e7d9);">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="mr-auto"></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title mb-5">Sign in</h2>
+                            <form method="post">
+                                {% csrf_token %}
+                                <fieldset class="form-group">
+                                    {{ form|crispy }}
+                                </fieldset>
+                                <div class="form-group">
+                                    <button class="mt-4 btn btn-outline-primary" type="submit">Sign in</button>
+                                </div>
+                            </form>
+                            <div class="mt-4">
+                                <p>Don't have an account? <a href="{% url 'register' %}">Sign up</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

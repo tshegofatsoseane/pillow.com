@@ -1,0 +1,59 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-1 d-flex justify-content-center align-items-center">
+                    <a href="{% url 'index' %}" class="btn btn-primary bg-indigo-500">Back</a>
+                </div>
+                <div class="col-11">
+                    <div class="mb-4 mt-4 d-flex justify-content-center align-items-center">
+                        <img src="{% static 'images/logo.png' %}" alt="Pillow Logo" class="h-8 w-auto mr-2" style="width:60px; height:60px;">
+                        <h2 class="ms-2">Pillow.com</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-body p-5" style="background:linear-gradient(45deg, #5a5bf3, #91e7d9);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 mb-3 d-sm-none d-lg-block">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">What makes a Landlord?</h2>
+                            <p class="card-text">Landlords are property owners who rent out their property to tenants. They are responsible for maintaining the property and ensuring that the tenants have a safe and comfortable living environment.</p>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">Already have an account?</h2>
+                            <p class="card-text">You can <a href="#">sign in</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-sm-12 mb-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title mb-5">Sign Up as a <span class="text-muted">Landlord</span></h2>
+                            <form method="post">
+                                {% csrf_token %}
+                                <fieldset class="form-group">
+                                    {{ form|crispy }}
+                                </fieldset>
+                                <div class="form-group">
+                                    <button class="mt-4 btn btn-outline-primary" type="submit">Sign Up</button>
+                                </div>
+                            </form>
+                            <div class="mt-4 d-sm-block d-lg-none">
+                                <p>Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
